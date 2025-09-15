@@ -3,6 +3,6 @@ from .views import ExcelCalculationView
 
 urlpatterns = [
     path(
-        "excel_calculating/", ExcelCalculationView.as_view(), name="excel_calculating"
+        "excel-calculating/", ExcelCalculationView.as_view(), name="excel-calculating"
     ),
 ]

@@ -33,8 +33,9 @@ def calculate_columns_statistics(
                     ColumnStatistics(
                         sheet_column=get_column_letter(column_index + 1),
                         column=col,
+                        sheet=i.sheet_name,
                         sum=round(df[col].sum(), 2),
-                        average=round(df[col].mean(), 2),
+                        avg=round(df[col].mean(), 2),
                     )
                 )
             except TypeError as err:

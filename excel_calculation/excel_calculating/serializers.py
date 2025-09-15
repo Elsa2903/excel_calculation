@@ -25,8 +25,9 @@ class CalculactingExcelStatsIn(serializers.Serializer):
 class ColumnDataOut(serializers.Serializer):
     column = serializers.CharField()
     sheet_column = serializers.CharField()
+    sheet = serializers.CharField()
     sum = serializers.FloatField()
-    average = serializers.FloatField()
+    avg = serializers.FloatField()
 
 
 class CalculactingExcelStatsOut(serializers.Serializer):

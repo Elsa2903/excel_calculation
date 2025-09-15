@@ -12,5 +12,6 @@ class SheetData:
 class ColumnStatistics(TypedDict):
     column: str
     sheet_column: str
+    sheet: str
     sum: float
-    average: float
+    avg: float
