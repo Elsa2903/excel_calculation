@@ -1,0 +1,18 @@
+[tool.lint]
+line-length = 88
+target-version = "py313"
+select = ["E", "F", "I", "UP"]
+ignore = ["E501"]  # example: ignore line length warnings
+
+[tool.mypy]
+python_version = 3.13
+disallow_untyped_defs = true
+strict = true
+
+[[tool.mypy.overrides]]
+module=["drf_yasg.*"]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module="rest_framework.*"
+disable_error_code = ["type-arg", "misc"]
