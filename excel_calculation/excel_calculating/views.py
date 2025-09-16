@@ -43,7 +43,7 @@ class ExcelCalculationView(APIView):
         uploaded_file = serializer.validated_data["file"]
         columns = serializer.validated_data["columns"]
         result = calculate_columns_statistics(
-            columns_names=columns, excel_file=uploaded_file
+            columns_names=columns, uploaded_file=uploaded_file
         )
         if serializer.is_valid():
             return Response(

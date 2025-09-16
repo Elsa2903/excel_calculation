@@ -5,12 +5,14 @@ from rest_framework.response import Response
 from .domain.exceptions import (
     ColumnNamesNotExsistingException,
     CannotCalculateDataForThatColumnException,
+    UploadTypeInWrongTypeException
 )
 from rest_framework.views import exception_handler
 
 EXCEPTIONS = {
     CannotCalculateDataForThatColumnException: status.HTTP_400_BAD_REQUEST,
     ColumnNamesNotExsistingException: status.HTTP_403_FORBIDDEN,
+    UploadTypeInWrongTypeException: status.HTTP_415_UNSUPPORTED_MEDIA_TYPE
 }
 
 

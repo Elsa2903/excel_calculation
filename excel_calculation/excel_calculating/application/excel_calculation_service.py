@@ -2,22 +2,24 @@ from pandas import ExcelFile, read_excel
 from ..domain.column_statistics import ColumnStatistics
 from .excel_loader_service import find_columns_and_row_in_sheets
 from openpyxl.utils import get_column_letter
-from ..domain.exceptions import CannotCalculateDataForThatColumnException
+from ..domain.exceptions import CannotCalculateDataForThatColumnException,UploadTypeInWrongTypeException
 from typing import cast
 
-
+from io import BufferedReader
 def calculate_columns_statistics(
-    columns_names: list[str], excel_file: ExcelFile
+    columns_names: list[str], uploaded_file: BufferedReader
 ) -> list[ColumnStatistics]:
+    try:    
+        excel_file = ExcelFile(uploaded_file)
+    except:
+        raise UploadTypeInWrongTypeException(uploaded_file.name)
     sheets = find_columns_and_row_in_sheets(
-        columns_names={col.strip().lower() for col in columns_names},
-        excel_file=ExcelFile(excel_file),
-    )
+            columns_names={col.strip().lower() for col in columns_names},
+            excel_file=excel_file,
+        )
     result = []
     for i in sheets:
         df = read_excel(excel_file, sheet_name=i.sheet_name, header=i.header_row)
-        #      df = df.dropna(axis=1, how="all")  # drop all empty columns
-        #      df = df.dropna(axis=0, how="all")  # drop all empty raws
         #  df1 = df1.dropna(axis=0, thresh=6)
         df.columns = df.columns.str.strip().str.lower()
         col_names = {
