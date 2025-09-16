@@ -80,10 +80,7 @@ Value sum/average can be calculated for all columns that have ONLY numeric value
 
 Invalid column/table name → HTTP 422 Unprocessable Entity
 
-Column contains non-numeric values when a numeric calculation is requested → HTTP 422
+Column contains non-numeric values when a numeric calculation is requested → HTTP 422 Unprocessable Entity
 
-Invalid or corrupted Excel file or some other file type  → HTTP 415
+Invalid or corrupted Excel file or some other file type  → HTTP 415 Unsupopoprted Media type
 
-Other errors → HTTP 400 or context-dependent
-
-Include detailed error info to indicate problematic columns or values
