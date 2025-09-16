@@ -6,6 +6,7 @@ from .domain.exceptions import (
     ColumnNamesNotExsistingException,
     CannotCalculateDataForThatColumnException,
     UploadTypeInWrongTypeException,
+    CannotCalculateDataForAllColumnsException,
 )
 from rest_framework.views import exception_handler
 
@@ -13,6 +14,7 @@ EXCEPTIONS = {
     CannotCalculateDataForThatColumnException: status.HTTP_422_UNPROCESSABLE_ENTITY,
     ColumnNamesNotExsistingException: status.HTTP_422_UNPROCESSABLE_ENTITY,
     UploadTypeInWrongTypeException: status.HTTP_415_UNSUPPORTED_MEDIA_TYPE,
+    CannotCalculateDataForAllColumnsException: status.HTTP_422_UNPROCESSABLE_ENTITY,
 }
 
 

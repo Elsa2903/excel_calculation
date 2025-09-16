@@ -1,5 +1,7 @@
-from typing import TypedDict
+from typing import TypedDict, NamedTuple
 from attrs import define
+
+from enum import StrEnum, auto
 
 
 @define
@@ -13,5 +15,15 @@ class ColumnStatistics(TypedDict):
     column: str
     sheet_column: str
     sheet: str
+    sum: float
+    avg: float
+
+
+class ColumnDataType(StrEnum):
+    MIX = auto()
+    ONE_TYPE = auto()
+
+
+class CalculationResponse(NamedTuple):
     sum: float
     avg: float

@@ -56,6 +56,9 @@ Base URL: 127.0.0.1:8000/excel_calculating
 endpoint for calculating sum and average:
 URL: /excel-calculating
 
+Description: 
+This endpoints calculates sum and average for each given column - it validates last 10 rows if there are only some formulas and removes them. Please attention to that, some values may  be wrongly calculated if there will be some strange schema in excel.
+
 Arguments:
 file: File - must be an excel file
 columns: list[str] - must be list of proper columns names for which we can calculate values
@@ -74,6 +77,30 @@ Response:
   ]
 }
 
+
+endpoint for calculating sum and average:
+URL: /excel-calculating-checking-cells
+
+Description: 
+This endpoints calculates sum and average for each given column - it may work a bit slower, but it checks whether or values have one type (formula or written in), in case of mix values it will only calculate for values written in - skip the formula. 
+
+Arguments:
+file: File - must be an excel file
+columns: list[str] - must be list of proper columns names for which we can calculate values
+
+Response:
+{
+  "file": "test_file.xlsx",
+  "summary": [
+    {
+      "column": "data_counting",
+      "sheet_column": "H",
+      "sheet": "sheet_name",
+      "sum": 2047.8,
+      "avg": 32
+    },
+  ]
+}
 ## Validation & Errors & limitations
 
 Value sum/average can be calculated for all columns that have ONLY numeric values. (no validation if it is ID, please keep that in mind).
