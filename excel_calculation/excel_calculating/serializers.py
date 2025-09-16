@@ -16,6 +16,7 @@ class FlexibleListField(serializers.ListField):
             data = [x.strip() for x in data[0].split(",") if x.strip()]
         return super().to_internal_value(data)
 
+
 # mypy: disable-error-code="type-arg"
 class CalculactingExcelStatsIn(serializers.Serializer):
     file = serializers.FileField()

@@ -14,8 +14,9 @@ from .application.excel_calculation_service import calculate_columns_statistics
 
 class ExcelCalculationView(APIView):
     parser_classes = [parsers.MultiPartParser]
-# mypy: disable-error-code="misc"
-    @swagger_auto_schema( 
+
+    # mypy: disable-error-code="misc"
+    @swagger_auto_schema(
         manual_parameters=[
             openapi.Parameter(
                 name="file",
