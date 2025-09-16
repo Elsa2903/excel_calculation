@@ -74,7 +74,7 @@ Response:
   ]
 }
 
-## Validation & Errors & limitations & requirements
+## Validation & Errors & limitations
 
 Value sum/average can be calculated for all columns that have ONLY numeric values. (no validation if it is ID, please keep that in mind).
 
