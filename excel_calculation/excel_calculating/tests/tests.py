@@ -13,7 +13,7 @@ class ExcelCalculationTests(APITestCase):
     def load_temp_excel_file(self) -> io.BufferedReader:
         return open(self.test_file_path, "rb")
 
-    def test_upload_excel_and_columns(self):
+    def test_upload_excel_and_columns(self) -> None:
         file = self.load_temp_excel_file()
         data = {"file": file, "columns": ["current usd"]}
 
@@ -33,26 +33,26 @@ class ExcelCalculationTests(APITestCase):
         )
         self.assertEqual(response.data["file"], "test_data.xlsx")
 
-    def test_upload_excel_and_columns_fails_on_wrong_column_name(self):
+    def test_upload_excel_and_columns_fails_on_wrong_column_name(self) -> None:
         file = self.load_temp_excel_file()
         data = {"file": file, "columns": ["tests"]}
 
         response = self.client.post(
             "/excel_calculating/excel-calculating/", data, format="multipart"
         )
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_422_UNPROCESSABLE_ENTITY)
         self.assertEqual(
             response.data["detail"],
             "Columns with names {'tests'} do not exist in given excel file",
         )
 
-    def test_upload_excel_and_columns_fails_on_wrong_column_data(self):
+    def test_upload_excel_and_columns_fails_on_wrong_column_data(self) -> None:
         file = self.load_temp_excel_file()
         data = {"file": file, "columns": ["Description"]}
         response = self.client.post(
             "/excel_calculating/excel-calculating/", data, format="multipart"
         )
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.status_code, status.HTTP_422_UNPROCESSABLE_ENTITY)
         self.assertEqual(
             response.data["detail"],
             "Cannot calculate data for column description with given excel file",

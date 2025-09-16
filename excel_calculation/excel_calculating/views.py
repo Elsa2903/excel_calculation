@@ -15,7 +15,6 @@ from .application.excel_calculation_service import calculate_columns_statistics
 class ExcelCalculationView(APIView):
     parser_classes = [parsers.MultiPartParser]
 
-    # mypy: disable-error-code="misc"
     @swagger_auto_schema(
         manual_parameters=[
             openapi.Parameter(
@@ -36,7 +35,7 @@ class ExcelCalculationView(APIView):
         ],
         consumes=["multipart/form-data"],
         responses={200: "Excel processed"},
-    )
+    )  # type: ignore[misc]
     def post(self, request: Request) -> Response:
         serializer = CalculactingExcelStatsIn(data=request.data)
         if not serializer.is_valid():
